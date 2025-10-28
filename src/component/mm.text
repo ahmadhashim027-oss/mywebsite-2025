@@ -1,0 +1,36 @@
+ <div className="row justify-content-center align-items-center"> 
+      <div className="col-lg-8 text-light justify-content-center align-items-center">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio
+          doloremque exercitationem officiis? Earum minima sit sapiente nostrum
+          voluptas quae itaque voluptates eius eligendi hic dolorem magni,
+          corrupti deleniti veniam rem? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Iure?
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio
+        </p>
+        <div className="d-flex flex-row gap-4">
+        <i className="bi bi-window"></i>
+        <small> React Js</small>
+        </div>
+        <div className="d-flex flex-row gap-4">
+        <i className="bi bi-window"></i>
+        <small> Next Js</small>
+        </div>
+        <div className="d-flex flex-row gap-4">
+        <i className="bi bi-window"></i>
+        <small> MongoDb Js</small>
+        </div>
+        <div className="d-flex flex-row gap-4">
+        <i className="bi bi-window"></i>
+        <small> Bootstrap Js</small>
+        </div>
+        <div className="d-flex flex-row gap-4">
+        <i className="bi bi-window"></i>
+        <small> Tailwin Js</small>
+        </div>
+      </div>
+      <div className="col-lg-4">
+        <img src="/about.jpg" className="img-fluid rounded"/>
+      </div></div>
