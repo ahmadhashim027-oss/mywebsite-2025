@@ -1,4 +1,4 @@
-import LandingPage from "@/component/Landing";
+import LandingPage from "@/Components/Landing";
 
 
 

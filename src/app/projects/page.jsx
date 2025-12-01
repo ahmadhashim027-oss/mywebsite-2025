@@ -1,12 +1,12 @@
-import AboutUs from "@/component/AboutUs";
-import Project from "@/component/Project";
+import AboutUs from "@/Components/AboutUs";
+import Project from "@/Components/Project";
 
 export default function ProjectPage() {
   return (
     <>
       <section className=" section ">
         <div className="container">
-        <Project/>
+          <Project />
         </div>
       </section>
     </>

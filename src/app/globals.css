@@ -2,11 +2,11 @@
 @import "bootstrap-icons";
 
 :root {
-  --bgColor: #0b0c27;
-  --lightColor: #fafafa;
-  --hoverColor: #75757a;
-  --softColor: #dfd9ff;
-  --textColor: #00ffff;
+  --bgColor: #125849;
+  --lightColor: #80df98;
+  --hoverColor: #c50f64;
+  --softColor: #dcd9eb;
+  --textColor: #cdd0df;
 }
 
 /*--------------------------------------------------------------
@@ -21,6 +21,7 @@ body {
 .navbar {
   padding: 0;
   background: var(--bgColor);
+  
 }
 
 .navbar ul {
@@ -35,6 +36,10 @@ body {
   position: relative;
 }
 
+
+.navbar-toggler-icon{
+  color: white;
+}
 .navbar a,
 .navbar a:focus {
   display: flex;
@@ -215,3 +220,36 @@ body {
   font-size: 25px;
 }
 */
+.project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fixed-img {
+  height: 200px;
+  /* same image height for all cards */
+  object-fit: cover;
+  width: 100%;
+}
+
+.card {
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.sectionTitle h3 {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #d7e6e4;
+}
+
+.sectionTitle h4 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}

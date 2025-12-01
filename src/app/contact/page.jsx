@@ -1,12 +1,9 @@
-import ContactUs from "@/component/Contact";
+import ContactUs from "@/Components/Contact";
 
-
- 
-
-export default function ContactUsPage(){
-    return(
-        <>
-        <ContactUs/>
-        </>
-    )
+export default function ContactUsPage() {
+  return (
+    <>
+      <ContactUs />
+    </>
+  );
 }
