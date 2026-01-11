@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/lib/mongodb";
 import Apprentice from "@/models/Apprentice";
-import cloudinary from "@/lib/cloudinary";
+import { connectDB } from "@/config/db";
 
 export async function POST(req) {
   try {
@@ -34,13 +33,10 @@ export async function POST(req) {
 
       const uploadResult = await new Promise((resolve, reject) => {
         cloudinary.uploader
-          .upload_stream(
-            { folder: "apprentice_passports" },
-            (err, result) => {
-              if (err) reject(err);
-              else resolve(result);
-            }
-          )
+          .upload_stream({ folder: "apprentice_passports" }, (err, result) => {
+            if (err) reject(err);
+            else resolve(result);
+          })
           .end(buffer);
       });
 
@@ -65,13 +61,11 @@ export async function POST(req) {
       },
     });
 
-    return NextResponse.json({ message: "Apprentice registered successfully!" });
-
+    return NextResponse.json({
+      message: "Apprentice registered successfully!",
+    });
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json(
-      { error: "Registration failed" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Registration failed" }, { status: 500 });
   }
 }
