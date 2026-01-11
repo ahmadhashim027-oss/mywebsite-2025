@@ -5,7 +5,6 @@ export default function Project() {
         <h3>03.</h3>
         <h4>My Project</h4>
       </div>
-      <p></p>
 
       <div className="row justify-content-center align-items-stretch text-light">
         {/* CARD 1 */}
@@ -281,15 +280,15 @@ export default function Project() {
           </div>
         </div>
 
-         <br />
+        <br />
         <div className="col-lg-3 d-flex">
           <div className="card project-card shadow my-4 flex-fill">
-          <video src="/videos/project.mp4"
-          controls
-          className="img-fluid rounded mt-2 shadow"
-          style={{ maxHeight: "200px" }}
-        />
-
+            <video
+              src="/videos/project.mp4"
+              controls
+              className="img-fluid rounded mt-2 shadow"
+              style={{ maxHeight: "200px" }}
+            />
           </div>
         </div>
       </div>

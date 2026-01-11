@@ -133,9 +133,6 @@ const ContactUs = () => {
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
-              <Link href="/view" className="btn btn-outline-warning w-100 mt-2">
-                View Messages
-              </Link>
             </form>
           </div>
         </div>

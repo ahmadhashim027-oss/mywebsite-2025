@@ -66,6 +66,14 @@ export default function SkillsSection() {
               Neat and attractive packaging to protect clothing and give it a
               premium feel before delivery to customers.
             </p>
+            <video
+              src="/videos/pakg.mp4"
+              controls
+              className="img-fluid rounded mt-2 shadow"
+              style={{ maxHeight: "200px" }}
+            />
+
+            
           </div>
         </div>
       </div>
