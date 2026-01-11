@@ -22,14 +22,14 @@ export default function ApprenticeDashboard() {
   // Calculate pending tasks count safely using useMemo
   const pendingTasksCount = useMemo(() => {
     if (!apprentice || !Array.isArray(apprentice.tasks)) return 0;
-    return apprentice.tasks.filter(t => t.status !== 'completed').length;
+    return apprentice.tasks.filter((t) => t.status !== "completed").length;
   }, [apprentice]);
 
   useEffect(() => {
     const fetchApprentice = async () => {
       const localData = JSON.parse(localStorage.getItem("apprenticeData"));
       if (!localData || !localData.email) {
-        router.replace("/apprentice-login");
+        router.replace("/apparentice-login");
         return;
       }
 
@@ -41,7 +41,9 @@ export default function ApprenticeDashboard() {
 
         if (!res.ok) {
           const errorData = await res.json().catch(() => ({}));
-          throw new Error(errorData.message || `Failed to fetch apprentice: ${res.status}`);
+          throw new Error(
+            errorData.message || `Failed to fetch apprentice: ${res.status}`
+          );
         }
 
         const data = await res.json();
@@ -57,7 +59,9 @@ export default function ApprenticeDashboard() {
         }
 
         if (!updatedApprentice.approved) {
-          setError("Your skill selection is pending admin approval. Please check back later.");
+          setError(
+            "Your skill selection is pending admin approval. Please check back later."
+          );
           return;
         }
 
@@ -83,11 +87,17 @@ export default function ApprenticeDashboard() {
     return (
       <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
         <div className="text-center">
-          <div className="spinner-border text-primary mb-3" style={{ width: '3rem', height: '3rem' }} role="status">
+          <div
+            className="spinner-border text-primary mb-3"
+            style={{ width: "3rem", height: "3rem" }}
+            role="status"
+          >
             <span className="visually-hidden">Loading...</span>
           </div>
           <h5>Loading your dashboard...</h5>
-          <p className="text-muted">Please wait while we fetch your information</p>
+          <p className="text-muted">
+            Please wait while we fetch your information
+          </p>
         </div>
       </div>
     );
@@ -98,7 +108,7 @@ export default function ApprenticeDashboard() {
     return (
       <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
         <div className="text-center">
-          <div className="alert alert-danger" style={{ maxWidth: '500px' }}>
+          <div className="alert alert-danger" style={{ maxWidth: "500px" }}>
             <h5 className="alert-heading">Error</h5>
             <p>{error}</p>
             <hr />
@@ -130,7 +140,7 @@ export default function ApprenticeDashboard() {
     return (
       <div className="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
         <div className="text-center">
-          <div className="alert alert-warning" style={{ maxWidth: '500px' }}>
+          <div className="alert alert-warning" style={{ maxWidth: "500px" }}>
             <h5>Unable to load dashboard</h5>
             <p>No apprentice data available</p>
             <button
@@ -157,15 +167,18 @@ export default function ApprenticeDashboard() {
             <div className="mb-4">
               <h4 className="fw-bold mb-3">Apprentice Panel</h4>
               <div className="d-flex align-items-center mb-3">
-                <div className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center me-3" style={{ width: '40px', height: '40px' }}>
+                <div
+                  className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center me-3"
+                  style={{ width: "40px", height: "40px" }}
+                >
                   <i className="bi bi-person-fill"></i>
                 </div>
                 <div>
                   <p className="mb-0 fw-semibold">
-                    {apprentice.fullName?.split(' ')[0] || 'User'}
+                    {apprentice.fullName?.split(" ")[0] || "User"}
                   </p>
                   <small className="text-light-emphasis">
-                    {apprentice.skill || 'No skill'}
+                    {apprentice.skill || "No skill"}
                   </small>
                 </div>
               </div>
@@ -173,7 +186,9 @@ export default function ApprenticeDashboard() {
 
             <ul className="nav flex-column gap-2 flex-grow-1">
               <li
-                className={`nav-link text-white rounded ${activeView === "Profile" ? "bg-primary fw-bold" : ""}`}
+                className={`nav-link text-white rounded ${
+                  activeView === "Profile" ? "bg-primary fw-bold" : ""
+                }`}
                 onClick={() => setActiveView("Profile")}
                 style={{ cursor: "pointer" }}
               >
@@ -182,7 +197,9 @@ export default function ApprenticeDashboard() {
               </li>
 
               <li
-                className={`nav-link text-white rounded ${activeView === "Tasks" ? "bg-primary fw-bold" : ""}`}
+                className={`nav-link text-white rounded ${
+                  activeView === "Tasks" ? "bg-primary fw-bold" : ""
+                }`}
                 onClick={() => setActiveView("Tasks")}
                 style={{ cursor: "pointer" }}
               >

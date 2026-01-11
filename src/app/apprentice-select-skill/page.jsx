@@ -5,34 +5,50 @@ import { useRouter } from "next/navigation";
 
 export default function ApprenticeSelectSkill() {
   const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [skill, setSkill] = useState("");
+  const [apprenticeData, setApprenticeData] = useState(null);
 
-  // Get apprentice data from localStorage
-  const apprenticeData = JSON.parse(localStorage.getItem("apprenticeData"));
-
+  // 🔒 Load apprentice safely from localStorage
   useEffect(() => {
-    if (!apprenticeData) {
-      router.replace("/"); // redirect if not logged in
-    } else if (apprenticeData.skill && apprenticeData.approved) {
-      // Already selected skill and approved → go to dashboard
-      router.replace("/apprentice-dashboard");
+    const stored = localStorage.getItem("apprenticeData");
+
+    if (!stored) {
+      router.replace("/apprentice-login");
+      return;
     }
-  }, []);
+
+    const parsed = JSON.parse(stored);
+
+    // If already approved → dashboard
+    if (parsed.skill && parsed.approved === true) {
+      router.replace("/apprentice-dashboard");
+      return;
+    }
+
+    setApprenticeData(parsed);
+  }, [router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    if (!skill) return setError("Please select a skill");
+
+    if (!skill) {
+      setError("Please select a skill");
+      return;
+    }
 
     setLoading(true);
+
     try {
       const res = await fetch("/api/apprentice/select-skill", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          apprenticeId: apprenticeData.id,
+          // ✅ FIX: support id OR _id
+          apprenticeId: apprenticeData.id || apprenticeData._id,
           skill,
         }),
       });
@@ -43,16 +59,18 @@ export default function ApprenticeSelectSkill() {
         throw new Error(data.message || "Failed to submit skill");
       }
 
-      alert(
-        "Skill selection submitted! Admin approval is required before dashboard access."
-      );
-      router.replace("/apparantice-dashboard"); // Redirect back to login page
+      alert("Skill submitted successfully! Please wait for admin approval.");
+
+      router.replace("/apprentice-login");
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  // Prevent rendering until data is ready
+  if (!apprenticeData) return null;
 
   return (
     <div className="container py-5">
@@ -75,11 +93,13 @@ export default function ApprenticeSelectSkill() {
                   required
                 >
                   <option value="">Select a skill</option>
-                  <option>Sewing</option>
-                  <option>Cutting</option>
-                  <option>Ironing</option>
-                  <option>Packaging</option>
-                  <option>Fashion Design (General)</option>
+                  <option value="Sewing">Sewing</option>
+                  <option value="Cutting">Cutting</option>
+                  <option value="Ironing">Ironing</option>
+                  <option value="Packaging">Packaging</option>
+                  <option value="Fashion Design (General)">
+                    Fashion Design (General)
+                  </option>
                 </select>
               </div>
 
